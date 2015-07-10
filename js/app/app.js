@@ -9,9 +9,23 @@ define(["three", "camera", "controls", "geometry", "light", "material", "rendere
                     new THREE.MeshFaceMaterial(material.solid) );
 
                 scene.add(cube);
+                window.requestAnimationFrame(this.animate);
             },
             animate: function() {
-                jsRocket.update();
+                var failed = false;
+                try {
+                    jsRocket.update();
+                }
+                catch(err)
+                { 
+                    failed = true;                }
+                finally
+                {
+                    window.requestAnimationFrame(app.animate);
+                }
+
+                if(failed)
+                    return;
 
                 var rot = (jsRocket.tracks.rotation.getValue(jsRocket.row) || 0) / 180 * Math.PI,
                     color = new THREE.Color();
