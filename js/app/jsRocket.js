@@ -34,7 +34,7 @@ define(["jsrocket"], function(JSRocket){
         prepareSync: function() {
             if (this.demoMode) {
                 this.syncDevice.setConfig({'rocketXML':'cube.rocket'})
-                this.syncDevice.init('demo');
+                this.syncDevice.init('silence');
             } else {
                 this.syncDevice.init();
             }
@@ -64,7 +64,6 @@ define(["jsrocket"], function(JSRocket){
 
         onAudioReady: function(that) {
             if (that.demoMode) {
-                that.update();
                 that.audio.play();
             } else {
                 that.audio.pause();
@@ -73,35 +72,27 @@ define(["jsrocket"], function(JSRocket){
         },
 
         onSyncUpdate: function(that, row) {
-            if (!isNaN(row)) {
-                that.row = row;
+            if (!isNaN(row)) 
+            {
+                that.audio.currentTime = row / that.ROW_RATE;
             }
-            that.update();
         },
 
-        onPlay: function(that) {
-            that.audio.currentTime = that.row / that.ROW_RATE;
+        onPlay: function(that) 
+        {
+            console.log("On play");
             that.audio.play();
-            that.update();
         },
 
         onPause: function(that) {
-            that.row = that.audio.currentTime * that.ROW_RATE;
-            window.cancelAnimationFrame(that.app.animate);
+            console.log("On Pause");
             that.audio.pause();
         },
 
-        update: function() {
-            if (this.audio.paused === false) {
-                this.row = this.audio.currentTime * this.ROW_RATE;
-                this.syncDevice.update(this.row);
-            }
-
-            if((this.demoMode === true)  || (this.audio.paused === false)) {
-                window.requestAnimationFrame(this.app.animate);
-            }  else {
-                window.cancelAnimationFrame(this.app.animate);
-            }
+        update: function() 
+        {
+            this.row = this.audio.currentTime * this.ROW_RATE;
+            this.syncDevice.update(this.row);
         }
     };
 
