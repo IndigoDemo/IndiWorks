@@ -12,17 +12,20 @@ define(["three", "camera", "controls", "geometry", "light", "material", "rendere
                 window.requestAnimationFrame(this.animate);
             },
             animate: function() {
+                var failed = false;
                 try {
                     jsRocket.update();
                 }
                 catch(err)
                 { 
-                    return;
-                }
+                    failed = true;                }
                 finally
                 {
                     window.requestAnimationFrame(app.animate);
                 }
+
+                if(failed)
+                    return;
 
                 var rot = (jsRocket.tracks.rotation.getValue(jsRocket.row) || 0) / 180 * Math.PI,
                     color = new THREE.Color();

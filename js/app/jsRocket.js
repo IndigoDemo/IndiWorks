@@ -80,12 +80,10 @@ define(["jsrocket"], function(JSRocket){
 
         onPlay: function(that) 
         {
-            console.log("On play");
             that.audio.play();
         },
 
         onPause: function(that) {
-            console.log("On Pause");
             that.audio.pause();
         },
 
