@@ -3,7 +3,7 @@ define(["three"], function(THREE) {
 		uniforms: {
 			"tDiffuse": { type: "t", value: null },
 			"tSize":    { type: "v2", value: new THREE.Vector2( 256, 256 ) },
-			"amount": { type: "f", value: 0.7 },
+			"opacity": { type: "f", value: 0.7 },
 			"color": { type: "v3", value: new THREE.Vector3( 1,1,1 ) }
 		},
 
@@ -18,12 +18,12 @@ define(["three"], function(THREE) {
 
 		fragmentShader: [
 			"uniform sampler2D tDiffuse;",
-			"uniform float amount;",
+			"uniform float opacity;",
 			"uniform vec3 color;",
 			"varying vec2 vUv;",
 
 			"void main() {",
-				"gl_FragColor = vec4(mix(texture2D(tDiffuse,vUv).xyz, color, amount), 1);",
+				"gl_FragColor = vec4(mix(texture2D(tDiffuse,vUv).xyz, color, opacity), 1);",
 			"}"
 		].join("\n")
 	};

@@ -14,10 +14,17 @@ define(["jsrocket"], function(JSRocket){
             clearR: 0,
             clearG: 0,
             clearB: 0,
+            fadeColorR: 0,
+            fadeColorG: 0,
+            fadeColorB: 0,
+            fadeAmount: 0,
             rotation: 0,
-            distance: 400,
-            fadeAmount: 0
+            distance: 400
         },
+
+        audioAnalyser: null,
+        audioData: null,
+
 
         app: null,
 
@@ -28,6 +35,14 @@ define(["jsrocket"], function(JSRocket){
             this.syncDevice = new JSRocket.SyncDevice(this);
 
             this.audio = new Audio();
+
+            var audioCtx = new AudioContext();
+            this.audioAnalyser = audioCtx.createAnalyser();
+
+            this.audioData = new Uint8Array(this.audioAnalyser.frequencyBinCount);
+            var source = audioCtx.createMediaElementSource(this.audio);
+            source.connect(this.audioAnalyser);
+            this.audioAnalyser.connect(audioCtx.destination);
 
             this.prepareSync();
         },
@@ -59,9 +74,12 @@ define(["jsrocket"], function(JSRocket){
             that.tracks['clearR'] = that.syncDevice.getTrack('clearR');
             that.tracks['clearG'] = that.syncDevice.getTrack('clearG');
             that.tracks['clearB'] = that.syncDevice.getTrack('clearB');
+            that.tracks['fadeColorR'] = that.syncDevice.getTrack('fadeColorR');
+            that.tracks['fadeColorG'] = that.syncDevice.getTrack('fadeColorG');
+            that.tracks['fadeColorB'] = that.syncDevice.getTrack('fadeColorB');
+            that.tracks['fadeAmount'] = that.syncDevice.getTrack('fadeAmount');
             that.tracks['rotation'] = that.syncDevice.getTrack('rotation');
             that.tracks['distance'] = that.syncDevice.getTrack('distance');
-            that.tracks['fadeAmount'] = that.syncDevice.getTrack('fadeAmount');
         },
 
         onAudioReady: function(that) {
@@ -93,6 +111,8 @@ define(["jsrocket"], function(JSRocket){
         {
             this.row = this.audio.currentTime * this.ROW_RATE;
             this.syncDevice.update(this.row);
+
+            this.audioAnalyser.getByteFrequencyData(this.audioData);
         }
     };
 

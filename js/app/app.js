@@ -13,25 +13,26 @@ define(["three", "camera", "controls", "light", "material", "renderer", "scene",
 
                 scene.add(cube);
 
+                console.log(jsRocket.audioData.length);
+
                 app.initPostProcessing(scene);
                 window.requestAnimationFrame(this.animate);
             },
 
             initPostProcessing: function(scene) {
-                console.log(THREE);
                 composer = new THREE.EffectComposer(renderer);
                 renderModel = new THREE.RenderPass(scene, camera);
 
                 var copyPass = new THREE.ShaderPass(THREE.CopyShader);
                 copyPass.renderToScreen = true;
 
-                var effectDotScreen = new THREE.BloomPass(0.7, 25, 7, 512);
-                effectDotScreen.renderToScreen = false;
+                var bloomPass = new THREE.BloomPass(0.5, 25, 7, 512);
+                bloomPass.renderToScreen = false;
 
                 fadePass = new FadePass();
 
                 composer.addPass(renderModel);
-                composer.addPass(effectDotScreen);
+                composer.addPass(bloomPass);
                 composer.addPass(fadePass);
                 composer.addPass(copyPass);
             },
@@ -64,12 +65,12 @@ define(["three", "camera", "controls", "light", "material", "renderer", "scene",
                 camera.position.z = Math.sin(rot) * (jsRocket.tracks.distance.getValue(jsRocket.row) || 0);
                 camera.lookAt(scene.position);
 
-                /*renderer.setClearColor(color);
-                renderer.render(scene, camera);*/
-
-                fadePass.amount = jsRocket.tracks.fadeAmount.getValue(jsRocket.row);
-                if(scene.fadeColor !== undefined)
-                    fadePass.color = scene.fadeColor;
+                fadePass.opacity = jsRocket.tracks.fadeAmount.getValue(jsRocket.row);
+                fadePass.color = new THREE.Vector3(
+                    jsRocket.tracks.fadeColorR.getValue(jsRocket.row),
+                    jsRocket.tracks.fadeColorG.getValue(jsRocket.row),
+                    jsRocket.tracks.fadeColorB.getValue(jsRocket.row)
+                );
 
                 renderer.setClearColor(color);
                 renderer.clear();

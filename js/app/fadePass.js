@@ -3,7 +3,7 @@ define(["three", "fadeShader"], function(THREE, FadeShader) {
         var shader = FadeShader;
 
         this.color = new THREE.Vector3(1, 1, 1);
-        this.amount = 0;
+        this.opacity = 0;
 
         this.uniforms = THREE.UniformsUtils.clone(shader.uniforms);
 
@@ -28,7 +28,7 @@ define(["three", "fadeShader"], function(THREE, FadeShader) {
         render: function(renderer, writeBuffer, readBuffer, delta, maskActive) {
             this.uniforms["tDiffuse"].value = readBuffer;
             this.uniforms["tSize"].value.set(readBuffer.width, readBuffer.height);
-            this.uniforms["amount"].value = this.amount;
+            this.uniforms["opacity"].value = this.opacity;
             this.uniforms["color"].value.copy(this.color);
 
             this.quad.material = this.material;
