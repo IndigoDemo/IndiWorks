@@ -15,7 +15,8 @@ define(["jsrocket"], function(JSRocket){
             clearG: 0,
             clearB: 0,
             rotation: 0,
-            distance: 400
+            distance: 400,
+            fadeAmount: 0
         },
 
         app: null,
@@ -60,6 +61,7 @@ define(["jsrocket"], function(JSRocket){
             that.tracks['clearB'] = that.syncDevice.getTrack('clearB');
             that.tracks['rotation'] = that.syncDevice.getTrack('rotation');
             that.tracks['distance'] = that.syncDevice.getTrack('distance');
+            that.tracks['fadeAmount'] = that.syncDevice.getTrack('fadeAmount');
         },
 
         onAudioReady: function(that) {
