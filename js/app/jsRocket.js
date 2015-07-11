@@ -4,7 +4,6 @@ define(["jsrocket"], function(JSRocket){
         ROWS_PER_BEAT: 8,
         ROW_RATE: null,
 
-        demoMode: false,
         syncDevice: null,
         row: 0,
         previousIntRow: null,
@@ -48,7 +47,7 @@ define(["jsrocket"], function(JSRocket){
         },
 
         prepareSync: function() {
-            if (this.demoMode) {
+            if (this.app.demo) {
                 this.syncDevice.setConfig({'rocketXML':'cube.rocket'})
                 this.syncDevice.init('silence');
             } else {
@@ -83,7 +82,7 @@ define(["jsrocket"], function(JSRocket){
         },
 
         onAudioReady: function(that) {
-            if (that.demoMode) {
+            if (that.app.demo) {
                 that.audio.play();
             } else {
                 that.audio.pause();

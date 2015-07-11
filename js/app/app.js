@@ -1,19 +1,30 @@
-define(["three", "camera", "controls", "light", "material", "renderer", "scene", "jsRocket", "fadePass"],
-    function (THREE, camera, controls, light, material, renderer, scene, jsRocket, FadePass) {
+define(["three", "camera", "controls", "light", "material", "renderer", "scene", "jsRocket", "fadePass", "stats"],
+    function (THREE, camera, controls, light, material, renderer, scene, jsRocket, FadePass, Stats) {
         var app = {
+            demo: false,
+            stats: null,
+
             composer: undefined,
             fadePass: undefined,
 
             init: function () {
+                if (app.demo === false) {
+                    this.stats = new Stats();
+                    this.stats.setMode(0); // 0: fps, 1: ms, 2: mb
+                    this.stats.domElement.style.position = 'absolute';
+                    this.stats.domElement.style.left = '0px';
+                    this.stats.domElement.style.top = '0px';
+                }
+
                 jsRocket.init(this);
+
+                document.body.appendChild(this.stats.domElement);
 
                 var cube = new THREE.Mesh(
                     new THREE.BoxGeometry( 100, 100, 100 ),
                     new THREE.MeshFaceMaterial(material.solid) );
 
                 scene.add(cube);
-
-                console.log(jsRocket.audioData.length);
 
                 app.initPostProcessing(scene);
                 window.requestAnimationFrame(this.animate);
@@ -38,6 +49,10 @@ define(["three", "camera", "controls", "light", "material", "renderer", "scene",
             },
 
             animate: function() {
+                if (app.stats) {
+                    app.stats.begin();
+                }
+
                 var failed = false;
                 try {
                     jsRocket.update();
@@ -74,8 +89,11 @@ define(["three", "camera", "controls", "light", "material", "renderer", "scene",
 
                 renderer.setClearColor(color);
                 renderer.clear();
-                renderer.autoClear = false;
                 composer.render();
+
+                if (app.stats) {
+                    app.stats.end();
+                }
             }
         };
         return app;
