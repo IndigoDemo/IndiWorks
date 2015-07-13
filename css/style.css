@@ -1,17 +1,8 @@
-/* fonts */
-@font-face {
-    font-family: Hamburger;
-    src: url(../font/Hamburger.ttf);
-}
-
 /* base styles */
 
 html {
-    font-family: "Hamburger", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 24px;
-    line-height: 1.2;
+    font-family: 'Open Sans', sans-serif;
     color: #fed;
-    text-shadow: black 5px 5px;
     text-align: center;
     background: #113;
     background: linear-gradient(45deg, #113, #101);
