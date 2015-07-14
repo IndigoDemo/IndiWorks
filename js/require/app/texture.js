@@ -1,5 +1,5 @@
 define( ["three"], function ( THREE ) {
-  var texturePath = "js/textures/";
+  var texturePath = "assets/textures/";
   return {
     grass: THREE.ImageUtils.loadTexture( texturePath + "grass.png" )
   };

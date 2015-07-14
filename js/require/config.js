@@ -1,7 +1,7 @@
 // Configure Require.js
 var require = {
     // Default load path for js files
-    baseUrl: 'js/app',
+    baseUrl: 'js/require/app',
     shim: {
         // --- Use shim to mix together all THREE.js subcomponents
         'threeCore': { exports: 'THREE' },
