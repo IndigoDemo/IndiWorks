@@ -1,46 +1,10 @@
-/* base styles */
-
-html {
-    font-family: 'Open Sans', sans-serif;
-    color: #fed;
-    text-align: center;
-    background: #113;
-    background: linear-gradient(45deg, #113, #101);
-}
-
-body {
-    margin: 0;
-}
-
-h1 {
-    font-size: 70px;
-}
-
-p {
-    margin: 0 0 10px 0;
-}
-
-#container {
-    padding-left: 300px;
-    padding-right: 300px;
-    padding-bottom: 200px;
-}
-
-/* threejs container styles */
-#example-container {
-    background:#111;
-    margin: 20px auto;
-    padding: 20px;
-    min-height: 300px;
-}
-
 #threejs-container {
     position: relative;
     background:#000;
     color: #666;
     text-align: center;
-    padding: 50% 0 0 0;
     height: 0;
+    min-height: 300px;
 }
 
 #threejs-container canvas {

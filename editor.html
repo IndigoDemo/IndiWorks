@@ -6,21 +6,45 @@
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
 
-    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/material.min.css">
+    <script src="js/material.min.js"></script>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="css/style.css">
+
     <script>window.requireNode = window.require;window.require=undefined;</script>
     <script src="js/require/config.js"></script>
     <script data-main="../main" src="js/require/require.js"></script>
 </head>
 <body>
 
-<div id="container">
-    <h1>IndiWorks<small style="font-size:12px;">...probably</small></h1>
-    <div>
-        <div id="example-container">
-            <!-- Canvas to render on -->
-            <div id="threejs-container">Generating world...</div>
+<div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
+    <header class="mdl-layout__header mdl-layout__header--scroll">
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout-title">IndiWorks <small>...probably</small></span>
         </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Menu</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">MIDI</a>
+        </nav>
     </div>
+
+    <main class="mdl-layout__content">
+        <div class="mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-cell--4-col mdl-color--light-blue">
+                <h1 class="mdl-typography--text-center mdl-typography--display-4-color-contrast">Spectrum</h1>
+            </div>
+            <div class="mdl-cell--8-col">
+                <div id="threejs-container">Loading...</div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mdl-mini-footer">
+        <h1>MIDI TRACK</h1>
+    </footer>
 </div>
 
 </body>
