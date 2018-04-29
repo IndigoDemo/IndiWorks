@@ -93,7 +93,7 @@
 		<track name="fadeAmount">
 			<key row="0" value="0" interpolation="0"/>
 		</track>
-		<track name="rotation">
+		<track name="c_rotation">
 			<key row="0" value="0" interpolation="2"/>
 			<key row="5" value="45" interpolation="0"/>
 			<key row="11" value="20" interpolation="3"/>
@@ -119,7 +119,7 @@
 			<key row="141" value="50" interpolation="2"/>
 			<key row="145" value="64" interpolation="0"/>
 		</track>
-		<track name="distance">
+		<track name="c_distance">
 			<key row="0" value="400" interpolation="0"/>
 			<key row="5" value="130" interpolation="0"/>
 			<key row="11" value="400" interpolation="3"/>

@@ -1,34 +1,35 @@
-import Camera from "../components/camera";
-import {
-    Scene,
-    WebGLRenderer,
-    BoxGeometry,
-    MeshBasicMaterial,
-    Mesh
-} from "three";
+import Camera from "../core/camera";
+import { Scene, BoxGeometry, Mesh, MeshBasicMaterial } from "three";
 
 class demo {
     constructor() {
         this.camera = new Camera().camera;
         this.scene = new Scene();
 
-        this.renderer = new WebGLRenderer();
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
-
-        const container = document.getElementById("appContainer");
-        container.appendChild(this.renderer.domElement);
+        this.camera.position.z = 4;
 
         const geometry = new BoxGeometry(1, 1, 1);
         const material = new MeshBasicMaterial({ color: 0x00ff00 });
-        const cube = new Mesh(geometry, material);
+
+        const diameter = 100;
+        const materials = [];
+        const colors = [
+            0x540024,
+            0x7a0538,
+            0xba0032,
+            0xe9001c,
+            0xff3700,
+            0x2e0014
+        ];
+
+        for (var i = 0; i < 6; i++) {
+            materials.push(new MeshBasicMaterial({ color: colors[i] }));
+        }
+        const cube = new Mesh(
+            new BoxGeometry(diameter, diameter, diameter),
+            materials
+        );
         this.scene.add(cube);
-
-        this.animate = this.animate.bind(this);
-    }
-
-    animate() {
-        requestAnimationFrame(this.animate);
-        this.renderer.render(this.scene, this.camera);
     }
 }
 

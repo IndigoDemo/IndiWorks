@@ -1,3 +1,3 @@
 const base = require("./webpack.common");
 
-module.exports = Object.assign({}, base, {});
+module.exports = (env, argv) => Object.assign({}, base(env, argv), {});
