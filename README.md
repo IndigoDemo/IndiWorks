@@ -2,7 +2,7 @@
 
 ...probably
 
-# Usage
+# Use
 TODO
 
 # Dependencies
