@@ -1,6 +1,6 @@
 <sync rows="128">
 	<tracks>
-		<track name="clearR">
+		<track name="c_r">
 			<key row="0" value="45" interpolation="0"/>
 			<key row="11" value="45" interpolation="2"/>
 			<key row="14" value="242" interpolation="0"/>
@@ -27,7 +27,7 @@
 			<key row="125" value="255" interpolation="3"/>
 			<key row="127" value="51" interpolation="0"/>
 		</track>
-		<track name="clearG">
+		<track name="c_g">
 			<key row="0" value="166" interpolation="0"/>
 			<key row="11" value="166" interpolation="2"/>
 			<key row="14" value="242" interpolation="0"/>
@@ -54,7 +54,7 @@
 			<key row="125" value="255" interpolation="3"/>
 			<key row="127" value="41" interpolation="0"/>
 		</track>
-		<track name="clearB">
+		<track name="c_b">
 			<key row="0" value="154" interpolation="0"/>
 			<key row="11" value="154" interpolation="2"/>
 			<key row="14" value="242" interpolation="0"/>
@@ -80,18 +80,6 @@
 			<key row="123" value="44" interpolation="2"/>
 			<key row="125" value="255" interpolation="3"/>
 			<key row="127" value="44" interpolation="0"/>
-		</track>
-		<track name="fadeColorB">
-			<key row="0" value="1" interpolation="0"/>
-		</track>
-		<track name="fadeColorG">
-			<key row="0" value="0" interpolation="0"/>
-		</track>
-		<track name="fadeColorR">
-			<key row="0" value="0" interpolation="0"/>
-		</track>
-		<track name="fadeAmount">
-			<key row="0" value="0" interpolation="0"/>
 		</track>
 		<track name="c_rotation">
 			<key row="0" value="0" interpolation="2"/>
