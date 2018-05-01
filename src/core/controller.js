@@ -1,4 +1,4 @@
-import { WebGLRenderer } from "three";
+import { WebGLRenderer, Color } from "three";
 import OrbitControls from "orbit-controls-es6";
 import { SyncDevice } from "../lib/jsRocket.min";
 import Stats from "../lib/stats.min";
@@ -115,6 +115,15 @@ class Controller {
             this.activeScene.camera.position.x = Math.cos(rot) * (cDist || 0);
             this.activeScene.camera.position.z = Math.sin(rot) * (cDist || 0);
             this.activeScene.camera.lookAt(this.activeScene.scene.position);
+
+            const clearColor = new Color();
+            clearColor.setRGB(
+                (this.tracks.clearColor.r.getValue(row) || 0) / 255,
+                (this.tracks.clearColor.g.getValue(row) || 0) / 255,
+                (this.tracks.clearColor.b.getValue(row) || 0) / 255
+            );
+
+            this.renderer.setClearColor(clearColor);
 
             this.renderer.render(
                 this.activeScene.scene,
